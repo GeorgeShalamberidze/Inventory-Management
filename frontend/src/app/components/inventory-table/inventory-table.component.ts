@@ -9,42 +9,40 @@ import { InventoryService } from 'src/app/services/inventory.service';
 })
 export class InventoryTableComponent {
   items: IInventory[] = [];
+  itemsToDisplay: IInventory[] = [];
   page: number = 1;
   pageSize: number = 20;
   collectionSize: number = this.items.length;
 
   constructor(private inventoryService: InventoryService) {
-    this.refreshItems();
     this.fetchInventory();
   }
 
   refreshItems() {
-    this.items = this.items
-      .map((item, i) => ({
-        ...item,
-      }))
-      .slice(
-        (this.page - 1) * this.pageSize,
-        (this.page - 1) * this.pageSize + this.pageSize
-      );
+    const startIndex = (this.page - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.itemsToDisplay = this.items.slice(startIndex, endIndex);
   }
 
   deleteItem(item: IInventory) {
-    const index = this.items.indexOf(item);
-    if (index !== -1) {
-      this.items.splice(index, 1);
-      for (let i = index; i < this.items.length; i++) {
-        this.items[i].id = i + 1;
-      }
-      this.items = [...this.items];
-    }
+    this.inventoryService.deleteItemFromInventory(item.id).subscribe({
+      next: () => {
+        const index = this.items.indexOf(item);
+        if (index !== -1) this.items.splice(index, 1);
+        this.refreshItems();
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
   }
 
   fetchInventory() {
     this.inventoryService.getAllInventory().subscribe({
       next: (res: IInventory[]) => {
-        console.log(res);
         this.items = res;
+        this.collectionSize = res.length;
+        this.refreshItems();
       },
       error: (err) => {
         console.error(err);

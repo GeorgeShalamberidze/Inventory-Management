@@ -20,7 +20,6 @@ router.post("/", async (req: Request, res: Response) => {
       location,
       price,
     }: { name: string; location: string; price: number } = req.body;
-    console.log("BBBB: ", req.body);
     const inventory: Inventory = await Inventory.create({
       name,
       location,
@@ -34,14 +33,14 @@ router.post("/", async (req: Request, res: Response) => {
 });
 
 router.delete("/:inventoryID", async (req: Request, res: Response) => {
+  const { inventoryID } = req.params;
   try {
-    const { inventoryID } = req.params;
-    const inventory: Inventory | null = await Inventory.findByPk(inventoryID);
-    if (!inventory) {
-      return res.status(404).json({ error: "Inventory item not found" });
+    const item: Inventory | null = await Inventory.findByPk(inventoryID);
+    if (!item) {
+      return res.status(404).json({ error: "Item not found" });
     }
-    await inventory.destroy();
-    res.json({ message: "Inventory item deleted successfully" });
+    await item.destroy();
+    res.status(204).json({ success: "Item deleted successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });

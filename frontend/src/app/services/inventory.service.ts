@@ -19,7 +19,7 @@ export class InventoryService {
     return this.http.get<Inventory[]>(URL);
   }
 
-  deleteItemFromInventory(id: number): Observable<Inventory> {
+  deleteItemFromInventory(id: number) {
     return this.http.delete<Inventory>(`${URL}/${id}`);
   }
 }

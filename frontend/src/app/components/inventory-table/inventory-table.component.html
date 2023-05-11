@@ -15,13 +15,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of items">
+      <tr *ngFor="let item of itemsToDisplay">
         <th scope="row">{{ item.id }}</th>
         <td>
           {{ item.name }}
         </td>
         <td>{{ item.location }}</td>
-        <td>{{ item.price | number }}</td>
+        <td>{{ item.price | number }} ₾</td>
         <td class="button_data">
           <button
             type="button"

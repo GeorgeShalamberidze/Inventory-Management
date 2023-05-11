@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import IInventory from 'src/interfaces/Inventory';
 import { InventoryService } from 'src/app/services/inventory.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-inventory',
@@ -13,7 +14,8 @@ export class AddInventoryComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private inventoryService: InventoryService
+    private inventoryService: InventoryService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -26,10 +28,12 @@ export class AddInventoryComponent implements OnInit {
 
   onSubmit() {
     this.inventoryService.addInventoryItem(this.inventoryForm.value).subscribe({
-      next: (data: IInventory[]) => console.log(data),
+      next: (data: IInventory[]) => {
+        this.inventoryForm.reset();
+        this.router.navigate(['/inventory-table']);
+      },
       error: (err) => console.error(err),
     });
-    this.inventoryForm.reset();
   }
 
   get name() {
