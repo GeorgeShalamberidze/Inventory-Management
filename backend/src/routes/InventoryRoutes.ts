@@ -1,23 +1,34 @@
 import express, { Request, Response, Router } from "express";
 import Inventory from "../sequalize/models/Inventory.ts";
-import { Op } from "sequelize";
 
 const router: Router = express.Router();
 
 router.get("/", async (req: Request, res: Response) => {
-  const { location } = req.query;
+  const { location, sortFieldName, sortDirection } = req.query;
 
-  console.log("სორტტტტ", location);
   try {
     let inventories: Inventory[];
     if (location == "all") {
-      inventories = await Inventory.findAll();
+      if (sortFieldName && sortDirection !== undefined) {
+        inventories = await Inventory.findAll({
+          order: [[sortFieldName as string, sortDirection as "ASC" | "DESC"]],
+        });
+      } else {
+        inventories = await Inventory.findAll();
+      }
     } else {
       const decodedLocation = decodeURIComponent(location as string);
-      inventories = await Inventory.findAll({
-        where: { location: decodedLocation },
-      });
-      console.log(inventories);
+
+      if (sortFieldName && sortDirection !== undefined) {
+        inventories = await Inventory.findAll({
+          where: { location: decodedLocation },
+          order: [[sortFieldName as string, sortDirection as "ASC" | "DESC"]],
+        });
+      } else {
+        inventories = await Inventory.findAll({
+          where: { location: decodedLocation },
+        });
+      }
     }
     res.json(inventories);
   } catch (error) {

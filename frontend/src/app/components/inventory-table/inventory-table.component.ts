@@ -13,7 +13,10 @@ export class InventoryTableComponent {
   page: number = 1;
   pageSize: number = 20;
   collectionSize: number = this.items.length;
+
   filterTerm: string = 'all';
+  sortFieldName: 'name' | 'price' | '' = '';
+  sortDirection: 'ASC' | 'DESC' | '' = '';
 
   constructor(private inventoryService: InventoryService) {
     this.fetchInventory();
@@ -39,15 +42,33 @@ export class InventoryTableComponent {
   }
 
   fetchInventory() {
-    this.inventoryService.getAllInventory(this.filterTerm).subscribe({
-      next: (res: Inventory[]) => {
-        this.items = res;
-        this.collectionSize = res.length;
-        this.refreshItems();
-      },
-      error: (err) => {
-        console.error(err);
-      },
-    });
+    this.inventoryService
+      .getAllInventory(this.filterTerm, this.sortFieldName, this.sortDirection)
+      .subscribe({
+        next: (res: Inventory[]) => {
+          this.items = res;
+          this.collectionSize = res.length;
+          this.refreshItems();
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
+  }
+
+  setSortField(field: 'name' | 'price' | '') {
+    if (this.sortFieldName === field) {
+      this.sortDirection =
+        this.sortDirection === 'ASC'
+          ? 'DESC'
+          : this.sortDirection === 'DESC'
+          ? ''
+          : 'ASC';
+    } else {
+      this.sortFieldName = field;
+      this.sortDirection = 'ASC';
+    }
+
+    this.fetchInventory();
   }
 }

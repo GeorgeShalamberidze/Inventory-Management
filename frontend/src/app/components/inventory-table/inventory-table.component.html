@@ -10,7 +10,7 @@
     <div
       class="filter d-flex align-items-center justify-content-between flex-column"
     >
-      <label for="location">ადგილმდებარეობა</label>
+      <label for="location" class="location_text">ადგილმდებარეობა</label>
       <select
         id="location"
         [(ngModel)]="filterTerm"
@@ -30,9 +30,26 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">სახელი</th>
+        <th scope="col" (click)="setSortField('name')">
+          სახელი
+
+          <span *ngIf="sortFieldName === 'name' && sortDirection === 'ASC'"
+            >&uarr;</span
+          >
+          <span *ngIf="sortFieldName === 'name' && sortDirection === 'DESC'"
+            >&darr;</span
+          >
+        </th>
         <th scope="col">ადგილმდებარეობა</th>
-        <th scope="col">ფასი</th>
+        <th scope="col" (click)="setSortField('price')">
+          ფასი
+          <span *ngIf="sortFieldName === 'price' && sortDirection === 'ASC'"
+            >&uarr;</span
+          >
+          <span *ngIf="sortFieldName === 'price' && sortDirection === 'DESC'"
+            >&darr;</span
+          >
+        </th>
         <th scope="col">ოპერაციები</th>
       </tr>
     </thead>
