@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableComponent } from './table.component';
+import { AddInventoryComponent } from './add-inventory.component';
 
-describe('TableComponent', () => {
-  let component: TableComponent;
-  let fixture: ComponentFixture<TableComponent>;
+describe('AddInventoryComponent', () => {
+  let component: AddInventoryComponent;
+  let fixture: ComponentFixture<AddInventoryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TableComponent ]
+      declarations: [ AddInventoryComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TableComponent);
+    fixture = TestBed.createComponent(AddInventoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

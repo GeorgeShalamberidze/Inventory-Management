@@ -1,19 +1,12 @@
 import { Component } from '@angular/core';
-
-interface Country {
-  id?: number;
-  name: string;
-  flag: string;
-  area: number;
-  population: number;
-}
+import Country from 'src/interfaces/Country';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss'],
+  selector: 'app-inventory-table',
+  templateUrl: './inventory-table.component.html',
+  styleUrls: ['./inventory-table.component.scss'],
 })
-export class TableComponent {
+export class InventoryTableComponent {
   COUNTRIES: Country[] = [
     {
       name: 'Russia',
@@ -50,6 +43,90 @@ export class TableComponent {
       flag: '2/21/Flag_of_Vietnam.svg',
       area: 331212,
       population: 95540800,
+    },
+    {
+      name: 'Brazil',
+      flag: '0/05/Flag_of_Brazil.svg',
+      area: 8515767,
+      population: 209288278,
+    },
+    {
+      name: 'Mexico',
+      flag: 'f/fc/Flag_of_Mexico.svg',
+      area: 1964375,
+      population: 129163276,
+    },
+    {
+      name: 'United States',
+      flag: 'a/a4/Flag_of_the_United_States.svg',
+      area: 9629091,
+      population: 324459463,
+    },
+    {
+      name: 'India',
+      flag: '4/41/Flag_of_India.svg',
+      area: 3287263,
+      population: 1324171354,
+    },
+    {
+      name: 'Indonesia',
+      flag: '9/9f/Flag_of_Indonesia.svg',
+      area: 1910931,
+      population: 263991379,
+    },
+    {
+      name: 'Tuvalu',
+      flag: '3/38/Flag_of_Tuvalu.svg',
+      area: 26,
+      population: 11097,
+    },
+    {
+      name: 'China',
+      flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
+      area: 9596960,
+      population: 1409517397,
+    },
+    {
+      name: 'Brazil',
+      flag: '0/05/Flag_of_Brazil.svg',
+      area: 8515767,
+      population: 209288278,
+    },
+    {
+      name: 'Mexico',
+      flag: 'f/fc/Flag_of_Mexico.svg',
+      area: 1964375,
+      population: 129163276,
+    },
+    {
+      name: 'United States',
+      flag: 'a/a4/Flag_of_the_United_States.svg',
+      area: 9629091,
+      population: 324459463,
+    },
+    {
+      name: 'India',
+      flag: '4/41/Flag_of_India.svg',
+      area: 3287263,
+      population: 1324171354,
+    },
+    {
+      name: 'Indonesia',
+      flag: '9/9f/Flag_of_Indonesia.svg',
+      area: 1910931,
+      population: 263991379,
+    },
+    {
+      name: 'Tuvalu',
+      flag: '3/38/Flag_of_Tuvalu.svg',
+      area: 26,
+      population: 11097,
+    },
+    {
+      name: 'China',
+      flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
+      area: 9596960,
+      population: 1409517397,
     },
     {
       name: 'Brazil',
