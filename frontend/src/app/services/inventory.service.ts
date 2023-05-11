@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import Inventory from '../../interfaces/Inventory';
+import Inventory from '../interfaces/Inventory';
 
 const URL: string = 'http://localhost:3001/inventories';
 
@@ -15,8 +15,10 @@ export class InventoryService {
     return this.http.post<Inventory[]>(URL, data);
   }
 
-  getAllInventory(): Observable<Inventory[]> {
-    return this.http.get<Inventory[]>(URL);
+  getAllInventory(location: string): Observable<Inventory[]> {
+    return this.http.get<Inventory[]>(
+      `${URL}?location=${encodeURIComponent(location)}`
+    );
   }
 
   deleteItemFromInventory(id: number) {

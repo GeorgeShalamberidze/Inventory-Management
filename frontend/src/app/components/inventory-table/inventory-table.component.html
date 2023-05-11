@@ -1,8 +1,30 @@
 <div class="inventory_container">
-  <div class="add_button">
-    <button type="button" class="btn btn-primary my-3" routerLink="/add-item">
-      Add Item
-    </button>
+  <div
+    class="filter_&_button_wrapper d-flex w-100 align-items-center justify-content-between"
+  >
+    <div class="add_button">
+      <button type="button" class="btn btn-primary my-3" routerLink="/add-item">
+        Add Item
+      </button>
+    </div>
+    <div
+      class="filter d-flex align-items-center justify-content-between flex-column"
+    >
+      <label for="location">ადგილმდებარეობა</label>
+      <select
+        id="location"
+        [(ngModel)]="filterTerm"
+        (change)="fetchInventory()"
+        class="form-select"
+      >
+        <option [selected]="filterTerm === 'all'" value="all">ყველა</option>
+        <option value="მთავარი ოფისი">მთავარი ოფისი</option>
+        <option value="კავეა გალერია">კავეა გალერია</option>
+        <option value="კავეა თბილისი მოლი">კავეა თბილისი მოლი</option>
+        <option value="კავეა ისთ ფოინთი">კავეა ისთ ფოინთი</option>
+        <option value="კავეა სითი მოლი">კავეა სითი მოლი</option>
+      </select>
+    </div>
   </div>
   <table class="table table-striped">
     <thead>

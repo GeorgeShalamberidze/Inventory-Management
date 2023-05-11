@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import IInventory from 'src/interfaces/Inventory';
+import Inventory from 'src/app/interfaces/Inventory';
 import { InventoryService } from 'src/app/services/inventory.service';
 import { Router } from '@angular/router';
 
@@ -28,7 +28,7 @@ export class AddInventoryComponent implements OnInit {
 
   onSubmit() {
     this.inventoryService.addInventoryItem(this.inventoryForm.value).subscribe({
-      next: (data: IInventory[]) => {
+      next: (data: Inventory[]) => {
         this.inventoryForm.reset();
         this.router.navigate(['/inventory-table']);
       },

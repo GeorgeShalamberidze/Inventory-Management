@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import IInventory from 'src/interfaces/Inventory';
+import Inventory from 'src/app/interfaces/Inventory';
 import { InventoryService } from 'src/app/services/inventory.service';
 
 @Component({
@@ -8,11 +8,12 @@ import { InventoryService } from 'src/app/services/inventory.service';
   styleUrls: ['./inventory-table.component.scss'],
 })
 export class InventoryTableComponent {
-  items: IInventory[] = [];
-  itemsToDisplay: IInventory[] = [];
+  items: Inventory[] = [];
+  itemsToDisplay: Inventory[] = [];
   page: number = 1;
   pageSize: number = 20;
   collectionSize: number = this.items.length;
+  filterTerm: string = 'all';
 
   constructor(private inventoryService: InventoryService) {
     this.fetchInventory();
@@ -24,7 +25,7 @@ export class InventoryTableComponent {
     this.itemsToDisplay = this.items.slice(startIndex, endIndex);
   }
 
-  deleteItem(item: IInventory) {
+  deleteItem(item: Inventory) {
     this.inventoryService.deleteItemFromInventory(item.id).subscribe({
       next: () => {
         const index = this.items.indexOf(item);
@@ -38,8 +39,8 @@ export class InventoryTableComponent {
   }
 
   fetchInventory() {
-    this.inventoryService.getAllInventory().subscribe({
-      next: (res: IInventory[]) => {
+    this.inventoryService.getAllInventory(this.filterTerm).subscribe({
+      next: (res: Inventory[]) => {
         this.items = res;
         this.collectionSize = res.length;
         this.refreshItems();
