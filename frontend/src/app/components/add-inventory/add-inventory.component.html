@@ -41,8 +41,13 @@
       </div>
     </div>
     <div class="input">
-      <label for="place" class="form-label">Place</label>
-      <select class="form-select" id="place" formControlName="place" required>
+      <label for="location" class="form-label">location</label>
+      <select
+        class="form-select"
+        id="location"
+        formControlName="location"
+        required
+      >
         <option value="მთავარი ოფისი">მთავარი ოფისი</option>
         <option value="კავეა გალერია">კავეა გალერია</option>
         <option value="კავეა თბილისი მოლი">კავეა თბილისი მოლი</option>
@@ -50,10 +55,10 @@
         <option value="კავეა სითი მოლი">კავეა სითი მოლი</option>
       </select>
       <div
-        *ngIf="place?.invalid && (place?.dirty || place?.touched)"
+        *ngIf="location?.invalid && (location?.dirty || location?.touched)"
         class="alert alert-danger error-container"
       >
-        <div *ngIf="place?.errors?.['required']">place is required.</div>
+        <div *ngIf="location?.errors?.['required']">location is required.</div>
       </div>
     </div>
     <div class="col-12">

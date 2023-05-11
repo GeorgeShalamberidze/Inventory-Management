@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddInventoryComponent } from './add-inventory/add-inventory.component';
-import { InventoryTableComponent } from './inventory-table/inventory-table.component';
+import { AddInventoryComponent } from './components/add-inventory/add-inventory.component';
+import { InventoryTableComponent } from './components/inventory-table/inventory-table.component';
 
 const routes: Routes = [
   { path: 'add-item', component: AddInventoryComponent },

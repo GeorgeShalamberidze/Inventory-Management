@@ -5,8 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InventoryTableComponent } from './inventory-table/inventory-table.component';
-import { AddInventoryComponent } from './add-inventory/add-inventory.component';
+import { InventoryTableComponent } from './components/inventory-table/inventory-table.component';
+import { AddInventoryComponent } from './components/add-inventory/add-inventory.component';
+import { InventoryService } from './services/inventory.service';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [AppComponent, InventoryTableComponent, AddInventoryComponent],
   imports: [
@@ -16,8 +19,9 @@ import { AddInventoryComponent } from './add-inventory/add-inventory.component';
     NgbPaginationModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [InventoryService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

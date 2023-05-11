@@ -15,25 +15,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let country of countries">
-        <th scope="row">{{ country.id }}</th>
+      <tr *ngFor="let item of items">
+        <th scope="row">{{ item.id }}</th>
         <td>
-          <img
-            [src]="
-              'https://upload.wikimedia.org/wikipedia/commons/' + country.flag
-            "
-            class="me-2"
-            style="width: 20px"
-          />
-          {{ country.name }}
+          {{ item.name }}
         </td>
-        <td>{{ country.area | number }}</td>
-        <td>{{ country.population | number }}</td>
+        <td>{{ item.location }}</td>
+        <td>{{ item.price | number }}</td>
         <td class="button_data">
           <button
             type="button"
             class="btn btn-danger"
-            (click)="deleteItem(country)"
+            (click)="deleteItem(item)"
           >
             წაშლა
           </button>
@@ -41,7 +34,6 @@
       </tr>
     </tbody>
   </table>
-  <!-- Pagination -->
   <div class="d-flex align-items-center p-2">
     <ngb-pagination
       [collectionSize]="collectionSize"
@@ -52,7 +44,7 @@
     </ngb-pagination>
     <div class="px-5 d-flex">
       <p>total items:</p>
-      <span class="px-2">{{ collectionSize }}</span>
+      <span class="px-2">{{ items.length }}</span>
     </div>
   </div>
 </div>

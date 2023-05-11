@@ -20,6 +20,7 @@ router.post("/", async (req: Request, res: Response) => {
       location,
       price,
     }: { name: string; location: string; price: number } = req.body;
+    console.log("BBBB: ", req.body);
     const inventory: Inventory = await Inventory.create({
       name,
       location,

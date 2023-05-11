@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import IInventory from 'src/interfaces/Inventory';
+import { InventoryService } from 'src/app/services/inventory.service';
 
 @Component({
   selector: 'app-add-inventory',
@@ -9,20 +11,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddInventoryComponent implements OnInit {
   inventoryForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private inventoryService: InventoryService
+  ) {}
 
   ngOnInit(): void {
     this.inventoryForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       price: ['', [Validators.required, Validators.min(1)]],
-      place: ['', Validators.required],
+      location: ['', Validators.required],
     });
   }
 
   onSubmit() {
-    console.log(this.inventoryForm.value);
-    // You can add the logic to send the form's data to your server here
-    // After that, you may want to reset the form
+    this.inventoryService.addInventoryItem(this.inventoryForm.value).subscribe({
+      next: (data: IInventory[]) => console.log(data),
+      error: (err) => console.error(err),
+    });
     this.inventoryForm.reset();
   }
 
@@ -34,7 +40,7 @@ export class AddInventoryComponent implements OnInit {
     return this.inventoryForm.get('price');
   }
 
-  get place() {
-    return this.inventoryForm.get('place');
+  get location() {
+    return this.inventoryForm.get('location');
   }
 }
