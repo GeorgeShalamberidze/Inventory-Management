@@ -30,7 +30,7 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col" (click)="setSortField('name')">
+        <th scope="col" (click)="setSortField('name')" class="name_col">
           სახელი
 
           <span *ngIf="sortFieldName === 'name' && sortDirection === 'ASC'"
@@ -41,7 +41,7 @@
           >
         </th>
         <th scope="col">ადგილმდებარეობა</th>
-        <th scope="col" (click)="setSortField('price')">
+        <th scope="col" (click)="setSortField('price')" class="price_col">
           ფასი
           <span *ngIf="sortFieldName === 'price' && sortDirection === 'ASC'"
             >&uarr;</span

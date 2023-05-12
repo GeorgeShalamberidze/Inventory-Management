@@ -28,7 +28,7 @@ export class AddInventoryComponent implements OnInit {
 
   onSubmit() {
     this.inventoryService.addInventoryItem(this.inventoryForm.value).subscribe({
-      next: (data: Inventory[]) => {
+      next: () => {
         this.inventoryForm.reset();
         this.router.navigate(['/inventory-table']);
       },

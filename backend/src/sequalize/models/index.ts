@@ -11,7 +11,11 @@ const db: any = {};
 let sequelize: Sequelize;
 
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+  const connectionString = process.env[config.use_env_variable];
+  if (!connectionString) {
+    throw new Error("Connection string is undefined");
+  }
+  sequelize = new Sequelize(connectionString, config);
 } else {
   sequelize = new Sequelize(
     config.database,

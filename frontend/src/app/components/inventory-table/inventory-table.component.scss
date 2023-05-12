@@ -3,3 +3,17 @@
   font-size: 20px;
   margin: 7px 0;
 }
+
+.name_col,
+.price_col {
+  cursor: pointer;
+  user-select: none;
+}
+
+.name_col {
+  min-width: 98px;
+}
+
+.price_col {
+  min-width: 75px;
+}

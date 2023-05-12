@@ -12,10 +12,6 @@ app.use(bodyParser.json());
 app.use(cors());
 dotenv.config();
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
-});
-
 app.use("/inventories", inventoryRoutes);
 
 sequelize.sync({ force: false }).then(() => {
